@@ -2,15 +2,10 @@ params.output = "./output/"
 params.input_folder = "./examples/input/"
 params.name = "test-name"
 
-
+// Create channels
 input_folder_path = Channel.fromPath(params.input_folder)
-val name = params.name
-
-
-// script files
-
-main_script     = Channel.fromPath("${projectDir}/src/main.py")
-
+name_ch = Channel.value(params.name)
+main_script = Channel.fromPath("${projectDir}/src/main.py")
 
 process listfile {
     container "python:3.11-slim"
@@ -30,7 +25,6 @@ process listfile {
     """
 }
 
-
 workflow {
-  listfile(main_script, input_folder_path, params.name)
+    listfile(main_script, input_folder_path, name_ch)
 }
