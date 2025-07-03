@@ -1,0 +1,28 @@
+pipelines:
+- pipelineName: dummy git file-list pipeline
+  pipelineDescription: "This is an example to demonstrate how a git based workflow for semares could look like. The workflow performs a very basic task it just produce a text file with paths to all files inside a provided folder."
+  pipelinePath: "$PIPELINE_PATH/main.nf"
+  pipelineCommand: nextflow run
+  pipelineVersion: "1.0"
+
+  pipelineParams:
+  - paramName: Output Folder Path
+    paramKey: --output
+    paramDescription: Output folder path to store the result
+    paramType: OutputPath
+    isMultiValue: false
+    isRequired: true
+
+  - paramName: Input Dataset Folder
+    paramDescription: Folders with file to list
+    paramKey: --input_folder
+    paramType: InputPath
+    isMultiValue: false
+    isRequired: true
+
+  - paramName: Name
+    paramDescription: Add any dummy name
+    paramKey: --name
+    paramType: Text
+    isMultiValue: false
+    isRequired: true
