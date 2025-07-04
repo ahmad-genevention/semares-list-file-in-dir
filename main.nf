@@ -3,12 +3,11 @@ params.input_folder = "./examples/input/"
 params.name = "test-name"
 
 // Create channels
-
 input_folder_path = Channel.fromPath( params.input_folder, type: 'dir' )
 main_script = Channel.fromPath("${projectDir}/src/main.py")
 
 process listfile {
-    container "python:3.11-slim"
+    container "python:3.11.13"
     publishDir params.output, mode: "copy"
 
     input:
@@ -26,25 +25,3 @@ process listfile {
 workflow {
     listfile(main_script, input_folder_path)
 }
-
-// process listfile {
-//     container "python:3.11-slim"
-//     publishDir params.output, mode: "copy"
-//
-//     input:
-//     path script
-//     tuple path(input_folder), val(name)
-//
-//     output:
-//     path "dummy_workflow_result/result.txt"
-//
-//     """
-//     python \$script -i \$input_folder -n "\$name" -o result.txt
-//     """
-// }
-//
-// workflow {
-//     input_tuple = input_folder_path.map { it -> tuple(it, params.name) }
-//     listfile(main_script, input_tuple)
-// }
-
