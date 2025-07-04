@@ -14,3 +14,4 @@ with open(args.output, 'w') as f:
     for root, _, files in os.walk(args.input_folder):
         for file in files:
             f.write(f"{os.path.join(root, file)}\n")
+    print('file writing is done.')
