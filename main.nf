@@ -15,7 +15,7 @@ process listfile {
     path input_folder
 
     output:
-    path "dummy_workflow_result/result.txt"
+    path "result.txt"
 
     """
     python $script -i $input_folder -n "$params.name" -o ./result.txt
