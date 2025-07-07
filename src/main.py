@@ -10,6 +10,7 @@ args = parser.parse_args()
 
 with open(args.output, 'w') as f:
     f.write(f"Hello {args.name},\n")
+    f.write('this is new commit to check if both old and new versions works')
     f.write("following are the files in provided dataset directory:\n")
     for root, _, files in os.walk(args.input_folder):
         for file in files:
